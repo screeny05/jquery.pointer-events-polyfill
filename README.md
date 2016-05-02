@@ -1,6 +1,8 @@
-# A jQuery CSS Pointer-Events Polyfill
+# jQuery CSS Pointer-Events Polyfill
 
-This piece of javascript is a small Polyfill which adds support for the css-property `pointer-events: none;` for browsers not supporting it.
+This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none;` for browsers not supporting it.
+
+The size of the minified script is ~1000 bytes (roughly 500 bytes gzipped).
 
 *[`pointer-events` browser support](http://caniuse.com/#feat=pointer-events)*
 
