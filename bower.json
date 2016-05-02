@@ -1,0 +1,16 @@
+{
+    "name": "jquery.pointer-events-polyfill",
+    "description": "Adds a javascript polyfill for the pointer-events css-property.",
+    "main": "src/jquery.pointer-events-polyfill.js",
+    "authors": [
+        "Sebastian Langer <sl@scn.cx>"
+    ],
+    "license": "MIT",
+    "keywords": [
+        "polyfill",
+        "pointer-events",
+        "css",
+        "jquery"
+    ],
+    "homepage": "https://github.com/screeny05/pointer_events_polyfill"
+}
