@@ -1,6 +1,6 @@
 {
     "name": "jquery.pointer-events-polyfill",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Adds a javascript polyfill for the pointer-events css-property.",
     "repository": "https://github.com/screeny05/jquery.pointer-events-polyfill.git",
     "license": "MIT",
@@ -11,7 +11,7 @@
         "jquery"
     ],
     "scripts": {
-        "lint": "eslint .",
+        "lint": "eslint src/**",
         "build": "uglifyjs src/jquery.pointer-events-polyfill.js --compress --mangle --output dist/jquery.pointer-events-polyfill.min.js"
     },
     "devDependencies": {

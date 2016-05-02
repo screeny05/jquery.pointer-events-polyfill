@@ -1,6 +1,6 @@
 # jQuery CSS Pointer-Events Polyfill
 
-This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none;` for browsers not supporting it.
+This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none|all;` for browsers not supporting it.
 
 The size of the minified script is ~1000 bytes (roughly 500 bytes gzipped).
 
@@ -21,7 +21,7 @@ $(function(){
 });
 ```
 
-Now your page supports `pointer-events: none`.
+Now your page supports `pointer-events`!
 
 
 ## Available Options
@@ -32,6 +32,12 @@ You can call `window.pointerEventsPolyfill` with a couple of possibly useful opt
 * `listenOn` (Array, default: `['click', 'dblclick', 'mousedown', 'mouseup']`) - the events this plugin listens to. Excludes mouseover-events for performance, but you can add them yourself.
 * `forcePolyfill` (Bool, default: `false`) - disregard the browsers support of `pointer-events` and force the polyfill to be added.
 * `clickthroughClass` (String|Bool, default: `false`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
+
+
+## Changelog
+
+* 0.2.0 - change css-detection to use recursive traversion, detecting `pointer-events: none|all` on parent-elements
+* 0.1.0 - initial version
 
 
 ## License

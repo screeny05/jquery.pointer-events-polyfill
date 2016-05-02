@@ -24,7 +24,8 @@
         forcePolyfill: false,
         selector: '*',
         listenOn: ['click', 'dblclick', 'mousedown', 'mouseup'],
-        clickthroughClass: false
+        pointerEventsNoneClass: null,
+        pointerEventsAllClass: null
     };
 
     /**
@@ -46,12 +47,18 @@
     };
 
     /**
-     * detects whether or not the element allows click-through
-     * @param  {jQuery} $el  element to test
-     * @return {boolean}     indicates click-through-ability
+     * recursively checks parent nodes if they have a pointer-events css-property
+     * @param  {jQuery} $el element to test
+     * @return {boolean}    indicates click-through-ability of the given element
      */
     Polyfill.prototype.isClickThrough = function($el){
-        return $el.css('pointer-events') === 'none' || (this.options.clickthroughClass && $el.hasClass(this.options.clickthroughClass));
+        if($el.length === 0 || $el.is(':root') || $el.hasClass(this.options.pointerEventsAllClass) || $el.css('pointer-events') === 'all'){
+            return false;
+        }
+        if($el.hasClass(this.options.pointerEventsNoneClass) || $el.css('pointer-events') === 'none' || this.isClickThrough($el.parent())){
+            return true;
+        }
+        return false;
     };
 
     /**
