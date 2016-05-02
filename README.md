@@ -1,28 +1,51 @@
-# Pointer Events Polyfill
+# A jQuery CSS Pointer-Events Polyfill
 
-Pointer Events Polyfill is a short javascript library which adds support for the style attribute "pointer-events: none" to browsers without this feature (namely, MS IE).
+This piece of javascript is a small Polyfill which adds support for the css-property `pointer-events: none;` for browsers not supporting it.
 
-## Installation
+*[`pointer-events` browser support](http://caniuse.com/#feat=pointer-events)*
 
-Include any reasonable recent version of **jQuery** and **pointer\_events\_polyfill.js**.
+## Dependencies
 
-## Basic usage:
+This Polyfill depends on jQuery `@ >1.9`.
 
-    $(document).ready(function(){
-      PointerEventsPolyfill.initialize({});
-    });
 
-That's it! Any "pointer-events: none" attributes will now work seamlessly in IE.
+## Usage
 
-## Options
+Include `jquery.pointer-events-polyfill.js` in your document, and call the polyfill like this:
 
-You can also pass any of the following options into the *initialize* call:
+```javascript
+$(function(){
+    window.pointerEventsPolyfill();
+});
+```
 
-* **selector**: CSS selector (default: \*). You may wish to narrow this from '*' (all elements) in order to increase performance.
-* **mouseEvents**: Array of JS mouse events (default: ['click','dblclick','mousedown','mouseup']). Note that this default excludes a few mouse events for performance reasons, but you can add them back in.
-* **usePolyfillIf**: Function with boolean return value (default: simple check for IE<11). Return *true* to apply Pointer Events Polyfill. You can specify your own browser-support test function here (for example, you may wish to use feature detection with Modernizr instead of the default IE check).
+Now your page supports `pointer-events: none`.
+
+
+## Available Options
+
+You can call `window.pointerEventsPolyfill` with a couple of possibly useful options, namely:
+
+* `selector` (jQuery-selector, default: `'*'`) - indicates which elements the polyfill should apply to.
+* `listenOn` (Array, default: `['click', 'dblclick', 'mousedown', 'mouseup']`) - the events this plugin listens to. Excludes mouseover-events for performance, but you can add them yourself.
+* `forcePolyfill` (Bool, default: `false`) - disregard the browsers support of `pointer-events` and force the polyfill to be added.
+* `clickthroughClass` (String|Bool, default: `false`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
+
 
 ## License
 
-(c) 2013, Kent Mewhort, licensed under BSD. See LICENSE.txt for details.
+[MIT](LICENSE.md)
 
+
+## Credits
+
+Credits, where credits are due. This Polyfill is loosely based on @kmeworth's [pointer_events_polyfill](https://github.com/kmewhort/pointer_events_polyfill).
+
+The reason for this package's existance is that the `pointer_events_polyfill` is seemingly unmaintained and no longer adheres to common jQuery-Plugin best practices. Also, this package is available on Bower & NPM.
+
+**List of Contributors:**
+* @kmeworth
+* @mhmxs
+* @raldred
+* [Modernizr](https://github.com/Modernizr/Modernizr)
+* and probably some more awesome people
