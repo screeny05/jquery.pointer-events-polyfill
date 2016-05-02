@@ -31,11 +31,13 @@ You can call `window.pointerEventsPolyfill` with a couple of possibly useful opt
 * `selector` (jQuery-selector, default: `'*'`) - indicates which elements the polyfill should apply to.
 * `listenOn` (Array, default: `['click', 'dblclick', 'mousedown', 'mouseup']`) - the events this plugin listens to. Excludes mouseover-events for performance, but you can add them yourself.
 * `forcePolyfill` (Bool, default: `false`) - disregard the browsers support of `pointer-events` and force the polyfill to be added.
-* `clickthroughClass` (String|Bool, default: `false`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
+* `pointerEventsNoneClass` (String, default: `null`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
+* `pointerEventsAllClass` (String, default: `null`) - when truthy, this element acts as `pointer-events: all;`-element. (The opposite of `pointerEventsNoneClass`).
 
 
 ## Changelog
 
+* 0.2.1 - documentation
 * 0.2.0 - change css-detection to use recursive traversion, detecting `pointer-events: none|all` on parent-elements
 * 0.1.0 - initial version
 
