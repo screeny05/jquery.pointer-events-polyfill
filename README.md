@@ -1,6 +1,10 @@
 # jQuery CSS Pointer-Events Polyfill
 
-This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none|all;` for browsers not supporting it.
+![license](https://img.shields.io/npm/l/jquery.pointer-events-polyfill.svg?style=flat-square)
+[![npm](https://img.shields.io/npm/v/jquery.pointer-events-polyfill.svg?style=flat-square)]()
+[![Bower](https://img.shields.io/bower/v/jquery.pointer-events-polyfill.svg?style=flat-square)]()
+
+This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none|all|auto;` for browsers not supporting it.
 
 The size of the minified script is ~1000 bytes (roughly 500 bytes gzipped).
 
@@ -23,6 +27,16 @@ $(function(){
 
 Now your page supports `pointer-events`!
 
+If you want to remove the polyfill again, sometime later, use it like this:
+
+```javascript
+$(function(){
+    var polyfill = window.pointerEventsPolyfill();
+    // ...stuff
+    polyfill.destroy();
+});
+```
+
 
 ## Available Options
 
@@ -31,8 +45,9 @@ You can call `window.pointerEventsPolyfill` with a couple of possibly useful opt
 * `selector` (jQuery-selector, default: `'*'`) - indicates which elements the polyfill should apply to.
 * `listenOn` (Array, default: `['click', 'dblclick', 'mousedown', 'mouseup']`) - the events this plugin listens to. Excludes mouseover-events for performance, but you can add them yourself.
 * `forcePolyfill` (Bool, default: `false`) - disregard the browsers support of `pointer-events` and force the polyfill to be added.
-* `pointerEventsNoneClass` (String, default: `null`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
-* `pointerEventsAllClass` (String, default: `null`) - when truthy, this element acts as `pointer-events: all;`-element. (The opposite of `pointerEventsNoneClass`).
+* `pointerEventsNoneClass` (String|null, default: `null`) - when truthy, add the polyfill to elements with this class, even when the elements css doesn't have the `pointer-events`-property set.
+* `pointerEventsAllClass` (String|null, default: `null`) - when truthy, this element acts as `pointer-events: all;`-element. (The opposite of `pointerEventsNoneClass`).
+* `eventNamespace` (String|null, default: `pointer-events-polyfill`) - the namespace this plugin should use to identify events.
 
 
 ## Changelog
