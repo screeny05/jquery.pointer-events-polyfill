@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/v/jquery.pointer-events-polyfill.svg?style=flat-square)]()
 [![Bower](https://img.shields.io/bower/v/jquery.pointer-events-polyfill.svg?style=flat-square)]()
 
-This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none|all|auto;` for browsers not supporting it.
+This piece of javascript is a tiny Polyfill which adds support for the css-property `pointer-events: none|all;` for browsers not supporting it.
 
 The size of the minified script is ~1000 bytes (roughly 500 bytes gzipped).
 
@@ -35,6 +35,49 @@ $(function(){
     // ...stuff
     polyfill.destroy();
 });
+```
+
+
+## Caveats
+
+### The polyfill doesn't catch events
+
+Imagine you have two elements overlapping like this:
+
+![](docs/caveat-1.jpg)
+
+You want the purple element to not be clickable, so you add `pointer-events:none` to it.
+
+Now you add click-listeners to both elements. When the intersecting area gets clicked, the first event to be thrown will be that of the purple element, the second one will be the green-ish one.
+
+**The purple element's event will be thrown!**
+
+### Synchronous callbacks might hide events temporarily
+
+The Polyfill hides the elements synchronous to check whether the underlying elements have been clicked,
+so you're better of not blocking the event-loop, when listening on the subscribed events in order to not have invisible elements.
+
+Example:
+
+```html
+<div style="pointer-events: none;" class="non-clickable">
+    <div style="pointer-events: all;" class="clickable"></div>
+</div>
+
+<script>
+    window.pointerEventsPolyfill();
+
+    $('.clickable').click(function(){
+        // bad - alert blocks the event-loop, so .non-clickable
+        // will be invisible while the alert is open
+        alert('clicked');
+
+        // better
+        setTimeout(function(){
+            alert('clicked');
+        });
+    });
+</script>
 ```
 
 

@@ -163,11 +163,11 @@ describe('Polyfill Clickthrough Detection', function(){
         var polyfill = window.pointerEventsPolyfill({ forcePolyfill: true, pointerEventsNoneClass: cls });
         var $fixture = $('#fixture');
         var $body = $('body');
-        console.log($body);
         $body.addClass(cls);
-        expect(polyfill.isClickThrough($fixture)).to.be.true;
-        $body.removeClass(cls);
+        var fixtureIsClickthrough = polyfill.isClickThrough($fixture, true);
+        expect(fixtureIsClickthrough).to.be.true;
         polyfill.destroy();
+        $body.removeClass(cls);
     });
 
     it('should detect 1x encapsulated pointer-events:none elements', function(){
@@ -219,9 +219,4 @@ describe('Polyfill Clickthrough Detection', function(){
         expect(polyfill.isClickThrough($elTest)).to.be.false;
         polyfill.destroy();
     });
-});
-
-describe('Polyfill Functionality', function(){
-
-    it('should ')
 });

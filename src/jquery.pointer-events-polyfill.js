@@ -66,7 +66,7 @@
      */
     Polyfill.prototype.isClickThrough = function($el){
         var elPointerEventsCss = $el.css('pointer-events');
-        if($el.length === 0 || elPointerEventsCss === 'all' || elPointerEventsCss === 'auto' || $el.is(':root') || $el.hasClass(this.options.pointerEventsAllClass)){
+        if($el.length === 0 || elPointerEventsCss === 'all' || $el.is(':root') || $el.hasClass(this.options.pointerEventsAllClass)){
             return false;
         }
         if(elPointerEventsCss === 'none' || $el.hasClass(this.options.pointerEventsNoneClass) || this.isClickThrough($el.parent())){

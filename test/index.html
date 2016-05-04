@@ -4,6 +4,30 @@
     <meta charset="utf-8">
     <title>jquery.pointer-events-polyfill.js test-suite</title>
     <link rel="stylesheet" href="/node_modules/mocha/mocha.css"/>
+    <style>
+        .box {
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: rgba(65, 127, 127, .5);
+        }
+
+        .box--outer-1 {
+            padding: 50px;
+        }
+
+        .box--margin {
+            margin: -50px 0 0 -50px;
+        }
+
+        .has--pointer-events {
+            pointer-events: all;
+        }
+
+        .has--no-pointer-events {
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <div id="mocha"></div>
