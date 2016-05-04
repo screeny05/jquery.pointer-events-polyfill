@@ -1,34 +1,54 @@
 {
-    "name": "jquery.pointer-events-polyfill",
-    "version": "0.2.1",
-    "description": "Adds a javascript polyfill for the pointer-events css-property.",
-    "repository": "https://github.com/screeny05/jquery.pointer-events-polyfill.git",
-    "license": "MIT",
-    "keywords": [
-        "polyfill",
-        "pointer-events",
-        "css",
-        "jquery"
-    ],
-    "scripts": {
-        "lint": "eslint src/**",
-        "build": "uglifyjs src/jquery.pointer-events-polyfill.js --compress --mangle --output dist/jquery.pointer-events-polyfill.min.js"
+  "name": "jquery.pointer-events-polyfill",
+  "version": "0.2.1",
+  "description": "Adds a javascript polyfill for the pointer-events css-property.",
+  "repository": "https://github.com/screeny05/jquery.pointer-events-polyfill.git",
+  "license": "MIT",
+  "keywords": [
+    "polyfill",
+    "pointer-events",
+    "css",
+    "jquery"
+  ],
+  "scripts": {
+    "lint": "eslint src/**",
+    "build": "uglifyjs src/jquery.pointer-events-polyfill.js --compress --mangle --output dist/jquery.pointer-events-polyfill.min.js",
+    "test:mocha": "mocha-phantomjs http://127.0.0.1:8080/test/index.html --hooks mocha-phantomjs-istanbul --setting coverageFile=coverage.json",
+    "test": "parallelshell 'npm run serve' 'npm run test:mocha' -w",
+    "serve": "http-server . --cors -s",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.9.0",
+    "eslint-config-xo": "^0.14.1",
+    "http-server": "^0.9.0",
+    "jquery": "~1.9.1",
+    "mocha": "^2.4.5",
+    "mocha-phantomjs": "^4.0.2",
+    "mocha-phantomjs-istanbul": "0.0.2",
+    "parallelshell": "^2.0.0"
+  },
+  "eslintConfig": {
+    "extends": "xo",
+    "env": {
+      "browser": true,
+      "jquery": true
     },
-    "devDependencies": {
-        "eslint": "^2.9.0",
-        "eslint-config-xo": "^0.14.1"
-    },
-    "eslintConfig": {
-        "extends": "xo",
-        "env": {
-            "browser": true,
-            "jquery": true
-        },
-        "rules": {
-            "indent": ["error", 4],
-            "keyword-spacing": 0,
-            "space-before-function-paren": [2, "never"],
-            "space-before-blocks": [2, "never"]
-        }
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "keyword-spacing": 0,
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
+      "space-before-blocks": [
+        2,
+        "never"
+      ]
     }
+  }
 }

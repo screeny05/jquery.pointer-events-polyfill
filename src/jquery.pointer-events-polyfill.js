@@ -15,8 +15,11 @@
     var Polyfill = function(userOptions){
         this.options = $.extend({}, Polyfill.defaultOptions, userOptions);
 
-        if(this.options.forcePolyfill || this.supportsPointerEvents()){
+        this.isEnabled = false;
+
+        if(this.options.forcePolyfill || !this.supportsPointerEvents()){
             this.registerEvents();
+            this.isEnabled = true;
         }
     };
 
@@ -25,14 +28,24 @@
         selector: '*',
         listenOn: ['click', 'dblclick', 'mousedown', 'mouseup'],
         pointerEventsNoneClass: null,
-        pointerEventsAllClass: null
+        pointerEventsAllClass: null,
+        eventNamespace: 'pointer-events-polyfill'
     };
 
     /**
      * registers events needed for the polyfill to work properly
      */
     Polyfill.prototype.registerEvents = function(){
-        $(document).on(this.options.listenOn.join(' '), this.options.selector, $.proxy(this.onElementClick, this));
+        $(document).on(this.getEventNames(), this.options.selector, $.proxy(this.onElementClick, this));
+    };
+
+    /**
+     * get all events as a jquery-compatible event string
+     * @return {String} namespaced jquery-events
+     */
+    Polyfill.prototype.getEventNames = function(){
+        var eventNamespace = this.options.eventNamespace ? '.' + this.options.eventNamespace : '';
+        return this.options.listenOn.join(eventNamespace + ' ');
     };
 
     /**
@@ -52,10 +65,11 @@
      * @return {boolean}    indicates click-through-ability of the given element
      */
     Polyfill.prototype.isClickThrough = function($el){
-        if($el.length === 0 || $el.is(':root') || $el.hasClass(this.options.pointerEventsAllClass) || $el.css('pointer-events') === 'all'){
+        var elPointerEventsCss = $el.css('pointer-events');
+        if($el.length === 0 || elPointerEventsCss === 'all' || elPointerEventsCss === 'auto' || $el.is(':root') || $el.hasClass(this.options.pointerEventsAllClass)){
             return false;
         }
-        if($el.hasClass(this.options.pointerEventsNoneClass) || $el.css('pointer-events') === 'none' || this.isClickThrough($el.parent())){
+        if(elPointerEventsCss === 'none' || $el.hasClass(this.options.pointerEventsNoneClass) || this.isClickThrough($el.parent())){
             return true;
         }
         return false;
@@ -85,6 +99,14 @@
         $elOrg.show();
 
         return false;
+    };
+
+    /**
+     * destroys the plugin - removes listeners and data
+     */
+    Polyfill.prototype.destroy = function(){
+        $(document).off(this.getEventNames());
+        this.isEnabled = false;
     };
 
     /**
