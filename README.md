@@ -37,6 +37,7 @@ You can call `window.pointerEventsPolyfill` with a couple of possibly useful opt
 
 ## Changelog
 
+* 0.2.2 - add namespace to the subscribed events, add first basic tests
 * 0.2.1 - documentation
 * 0.2.0 - change css-detection to use recursive traversion, detecting `pointer-events: none|all` on parent-elements
 * 0.1.0 - initial version
