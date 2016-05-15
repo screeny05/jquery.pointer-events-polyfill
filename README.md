@@ -12,7 +12,7 @@ The size of the minified script is ~1000 bytes (roughly 500 bytes gzipped).
 
 ## Dependencies
 
-This Polyfill depends on jQuery `@ >1.9`.
+This Polyfill depends on jQuery `@ ~1.9`.
 
 
 ## Usage

@@ -1,7 +1,7 @@
 /**
  * CSS pointer-events polyfill
  * Adds support for `pointer-events: none;` for browsers not supporting this property
- * Requires jQuery@>1.9
+ * Requires jQuery@~1.9
  *
  * @copyright Sebastian Langer 2016
  * @license MIT
