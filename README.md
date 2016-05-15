@@ -95,6 +95,7 @@ You can call `window.pointerEventsPolyfill` with a couple of possibly useful opt
 
 ## Changelog
 
+* 0.2.4 - correct namespaces for subscriptions
 * 0.2.3 - better test, remove explicit support for `pointer-events:auto`
 * 0.2.2 - add namespace to the subscribed events, add first basic tests
 * 0.2.1 - documentation

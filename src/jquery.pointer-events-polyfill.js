@@ -45,7 +45,7 @@
      */
     Polyfill.prototype.getEventNames = function(){
         var eventNamespace = this.options.eventNamespace ? '.' + this.options.eventNamespace : '';
-        return this.options.listenOn.join(eventNamespace + ' ');
+        return this.options.listenOn.join(eventNamespace + ' ') + eventNamespace;
     };
 
     /**
