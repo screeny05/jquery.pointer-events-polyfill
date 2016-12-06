@@ -95,6 +95,16 @@
         e.target = elBelow;
         $(elBelow).trigger(e);
 
+        // open links
+        if(elBelow.tagName === 'A') {
+            // middle click (sometimes the browser blocks it as popup)
+            if(e.which === 2) {
+                window.open(elBelow.getAttribute('href'), '_blank');    
+            } else {
+                elBelow.click();
+            }
+        }
+
         // restore clicked element
         $elOrg.show();
 
